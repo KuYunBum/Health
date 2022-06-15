@@ -22,8 +22,8 @@
 	}
 
 	$(document).ready(function() {
-		$(".btn").on("click", function() {
-			location.href = "/health/board/register"
+		$(".bt_write").on("click", function() {
+			location.href = "write"
 		});
 	});
 </script>
@@ -89,7 +89,7 @@
 			</c:forEach>
 		</table>
 		<br>
-		<button class="btn">글쓰기</button>
+		<button class="bt_write">글쓰기</button>
 	</div>
 	
 	<!-- 하단 고정부분?? -->

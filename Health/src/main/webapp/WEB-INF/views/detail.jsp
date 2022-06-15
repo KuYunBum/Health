@@ -19,23 +19,16 @@
 				
 		$(document).ready(function(){
 			
-			var formObj = $("form[role='form']");
-			
-			console.log(formObj);
-			
-			$(".btn-warning").on("click", function(){
-				formObj.attr("action", "/health/board/modify");
-				formObj.attr("method", "get");		
-				formObj.submit();
+			$(".bt_update").on("click", function(){
+				self.location = "update";
 			});
 			
-			$(".btn-danger").on("click", function(){
-				formObj.attr("action", "/health/board/remove");
-				formObj.submit();
+			$(".bt_delete").on("click", function(){
+				self.location = "delete";
 			});
 			
-			$(".btn-primary").on("click", function(){
-				self.location = "/health/board/listAll";
+			$(".bt_list").on("click", function(){
+				self.location = "list";
 			});
 			
 		});
@@ -90,6 +83,12 @@
 				<td>${boardVO.bno}</td>
 			</tr>
 			<tr>
+				<th>작성자</th>
+			</tr>
+			<tr>
+				<td>${boardVO.writer}</td>
+			</tr>
+			<tr>
 				<th>제목</th>
 			</tr>
 			<tr>
@@ -99,19 +98,13 @@
 				<th>내용</th>
 			</tr>
 			<tr>
-				<td><textarea readonly="readonly">${boardVO.content}</textarea></td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-			</tr>
-			<tr>
-				<td>${boardVO.writer}</td>
+				<td><textarea readonly="readonly"> ${boardVO.content}</textarea></td>
 			</tr>
 		</table>
-		<div class="box-footer">
-			<button type="submit" class="">수정</button>
-			<button type="submit" class="">삭제</button>
-			<button type="submit" class="">목록</button>
+		<div class="bt_box">
+			<button type="submit" class="bt_update">수정</button>
+			<button type="submit" class="bt_delete">삭제</button>
+			<button type="button" class="bt_list">목록</button>
 		</div>
 	</div>
 	
