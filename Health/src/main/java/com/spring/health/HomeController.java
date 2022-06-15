@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.service.BoardService;
 
@@ -54,6 +55,13 @@ public class HomeController {
 		public void listAll(Model model) throws Exception {
 
 		model.addAttribute("list", service.listAll());
+	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public void detail(@RequestParam("bno") int bno, Model model) throws Exception {
+
+		service.viewcnt(bno);
+		model.addAttribute(service.read(bno));
 	}
 	
 }

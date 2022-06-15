@@ -15,17 +15,31 @@
 <script	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/health/resources/css/board_template.css" />
 </head>
-<script>
-	var result = '${msg}';
-	if (result == 'success') {
-		alert("처리가 완료되었습니다.");
-	}
-
-	$(document).ready(function() {
-		$(".btn").on("click", function() {
-			location.href = "/health/board/register"
+ 	<script>
+				
+		$(document).ready(function(){
+			
+			var formObj = $("form[role='form']");
+			
+			console.log(formObj);
+			
+			$(".btn-warning").on("click", function(){
+				formObj.attr("action", "/health/board/modify");
+				formObj.attr("method", "get");		
+				formObj.submit();
+			});
+			
+			$(".btn-danger").on("click", function(){
+				formObj.attr("action", "/health/board/remove");
+				formObj.submit();
+			});
+			
+			$(".btn-primary").on("click", function(){
+				self.location = "/health/board/listAll";
+			});
+			
 		});
-	});
+
 </script>
 
     <div class="header">
@@ -67,30 +81,40 @@
 
 
 	<div class="main">
-		<h1>게 시 판</h1>
+		<h1>상세 내용</h1>
 		<table id='customers' border="1">
 			<tr>
-				<th style="width: 80px">번호</th>
-				<th>제목</th>
-				<th style="width: 200px">작성자</th>
-				<th style="width: 250px">작성날짜</th>
-				<th style="width: 80px">조회</th>
+				<th>번호</th>
 			</tr>
-	
-			<c:forEach items="${list}" var="boardVO">
-				<tr>
-					<td>${boardVO.bno}</td>
-					<td><a href='detail?bno=${boardVO.bno}'>${boardVO.title}</a></td>
-					<td>${boardVO.writer}</td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-							value="${boardVO.regdate}" /></td>
-					<td><span class="badge bg-red">${boardVO.viewcnt }</span></td>
-				</tr>
-			</c:forEach>
+			<tr>
+				<td>${boardVO.bno}</td>
+			</tr>
+			<tr>
+				<th>제목</th>
+			</tr>
+			<tr>
+				<td>${boardVO.title}</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+			</tr>
+			<tr>
+				<td><textarea readonly="readonly">${boardVO.content}</textarea></td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+			</tr>
+			<tr>
+				<td>${boardVO.writer}</td>
+			</tr>
 		</table>
-		<br>
-		<button class="btn">글쓰기</button>
+		<div class="box-footer">
+			<button type="submit" class="">수정</button>
+			<button type="submit" class="">삭제</button>
+			<button type="submit" class="">목록</button>
+		</div>
 	</div>
+	
 	
 	<!-- 하단 고정부분?? -->
 
