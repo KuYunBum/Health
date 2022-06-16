@@ -22,64 +22,58 @@ public class BoardController {
 	@Inject
 	private BoardService service;
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registerGET(BoardVO board, Model model) throws Exception {
-
-		logger.info("register get ...........");
-	}
-
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(BoardVO board, Model model,RedirectAttributes rttr) throws Exception {
-
-		logger.info("regist post ...........");
-		logger.info(board.toString());
-
-		service.regist(board);
-
-		rttr.addFlashAttribute("msg", "success");
-		return "redirect:/board/listAll";
-
-	}
-
-	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listAll(Model model) throws Exception {
 
-		logger.info("show all list......................");
-		model.addAttribute("list", service.listAll());
+	model.addAttribute("list", service.listAll());
 	}
-
-	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void read(@RequestParam("bno") int bno, Model model) throws Exception {
-		logger.info("read......................"+bno);
-
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public void detail(@RequestParam("bno") int bno, Model model) throws Exception {
+	
 		service.viewcnt(bno);
 		model.addAttribute(service.read(bno));
 	}
-
-	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
-
-		service.remove(bno);
-
-		rttr.addFlashAttribute("msg", "success");
-
-		return "redirect:/board/listAll";
+	
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public void registerGET(BoardVO board, Model model) throws Exception {
+	
 	}
-
-	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String registPOST(BoardVO board, Model model,RedirectAttributes rttr) throws Exception {
+	
+		logger.info(board.toString());
+	
+		service.regist(board);
+	
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/board/list";
+	
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public void modifyGET(int bno, Model model) throws Exception {
 		model.addAttribute(service.read(bno));
 	}
-
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String modifyPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
-
-		logger.info("mod post............");
-
+		
 		service.modify(board);
 		rttr.addFlashAttribute("msg", "success");
-
-		return "redirect:/board/listAll";
+	
+		return "redirect:/board/list";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+	
+		service.remove(bno);
+	
+		rttr.addFlashAttribute("msg", "success");
+	
+		return "redirect:/board/list";
 	}
 
 }

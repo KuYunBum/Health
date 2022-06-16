@@ -33,7 +33,7 @@
                 <li><a href="/health/ex_recomm">AI 운동 추천</a></li>
                 <li><a href="#">멤버쉽</a></li>
                 <li><a href="#">트레이너</a></li>
-                <li><a href="list">자유게시판</a></li>
+                <li><a href="/health/board/list">자유게시판</a></li>
                 <li><a href="#">내 주변 헬스장 찾기</a></li>
                 <li>
                     <div class="searchBox">

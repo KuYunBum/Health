@@ -22,7 +22,7 @@
             <ul>
                 <!-- 상단 메뉴 -->
                 <li><a href="login">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="join">회원가입</a></li>
                 <li><a href="#">고객센터</a></li>
             </ul>
         </div>
@@ -33,7 +33,7 @@
                 <li><a href="/health/ex_recomm">AI 운동 추천</a></li>
                 <li><a href="#">멤버쉽</a></li>
                 <li><a href="#">트레이너</a></li>
-                <li><a href="list">자유게시판</a></li>
+                <li><a href="/health/board/list">자유게시판</a></li>
                 <li><a href="#">내 주변 헬스장 찾기</a></li>
                 <li>
                     <div class="searchBox">
@@ -99,7 +99,7 @@
                 <input type="checkbox" value="list5"> 종아리 
             </div>
             </div>
-            <a href="login.html">
+            <a href="#">
                 <input type="submit" value="가입하기" style="font-size:20px">
             </a>
             

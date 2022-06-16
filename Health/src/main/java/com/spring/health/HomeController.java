@@ -1,6 +1,10 @@
 package com.spring.health;
 
 
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -30,9 +34,17 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
+	public String home(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		return "home";
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ex_recomm";
 	}
 	
 	@RequestMapping(value = "/ex_recomm", method = RequestMethod.GET)
@@ -53,58 +65,6 @@ public class HomeController {
 		return "join";
 	}
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-		public void listAll(Model model) throws Exception {
 
-		model.addAttribute("list", service.listAll());
-	}
-	
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public void detail(@RequestParam("bno") int bno, Model model) throws Exception {
-
-		service.viewcnt(bno);
-		model.addAttribute(service.read(bno));
-	}
-	
-	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public void registerGET(BoardVO board, Model model) throws Exception {
-
-	}
-
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String registPOST(BoardVO board, Model model,RedirectAttributes rttr) throws Exception {
-
-		logger.info(board.toString());
-
-		service.regist(board);
-
-		rttr.addFlashAttribute("msg", "success");
-		return "redirect:/list";
-
-	}
-	
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public void modifyGET(int bno, Model model) throws Exception {
-		model.addAttribute(service.read(bno));
-	}
-
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String modifyPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
-		
-		service.modify(board);
-		rttr.addFlashAttribute("msg", "success");
-
-		return "redirect:/list";
-	}
-	
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
-
-		service.remove(bno);
-
-		rttr.addFlashAttribute("msg", "success");
-
-		return "redirect:/list";
-	}
 	
 }
