@@ -15,26 +15,18 @@
 <script	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/health/resources/css/board_template.css" />
 </head>
- 	<script>
-				
-		$(document).ready(function(){
-			
-			var formObj = $("form[role='form']");
-			
-			$(".bt_update").on("click", function(){
-				self.location = "update?bno=${boardVO.bno}";
-			});
-			
-			$(".bt_delete").on("click", function(){
-				formObj.attr("action", "delete");
-				formObj.submit();
-			});
-			
-			$(".bt_list").on("click", function(){
-				self.location = "list";
-			});
-			
+ <script>
+	$(document).ready(function() {
+		var formObj = $("form[role='form']");
+
+		$(".bt_update").on("click", function() {
+			formObj.submit();
 		});
+
+		$(".bt_list").on("click", function() {
+			self.location = "detail?bno=${boardVO.bno}";
+		});
+	});
 </script>
 
     <div class="header">
@@ -76,10 +68,8 @@
 
 
 	<div class="main">
-		<h1>상세 내용</h1>
+		<h1>내용 수정</h1>
 		<form role="form" method="post">
-			<input type='hidden' name='bno' value="${boardVO.bno}">
-		</form>
 			<table id='customers' border="1">
 				<tr>
 					<th>번호</th>
@@ -97,19 +87,19 @@
 					<th>제목</th>
 				</tr>
 				<tr>
-					<td>${boardVO.title}</td>
+					<td><input type="text" name='title'  style="width:100%" value="${boardVO.title}"></td>
 				</tr>
 				<tr>
 					<th>내용</th>
 				</tr>
 				<tr>
-					<td><textarea readonly="readonly"> ${boardVO.content}</textarea></td>
+					<td><textarea  style="width:100%" name="content" rows="3">${boardVO.content}</textarea></td>
 				</tr>
 			</table>
+		</form>
 		<div class="bt_box">
-			<button type="submit" class="bt_update">수정</button>
-			<button type="submit" class="bt_delete">삭제</button>
-			<button type="button" class="bt_list">목록</button>
+			<button type="submit" class="bt_update">저장</button>
+			<button type="submit" class="bt_list">취소</button>
 		</div>
 	</div>
 	
