@@ -162,6 +162,11 @@
     margin-top: 50px;
 }
 
+.logBtn input:hover{
+    background-color: aqua;
+    cursor: pointer;
+}
+
 .logBtn input{
 	background-color: yellow;
 	width: 20%;

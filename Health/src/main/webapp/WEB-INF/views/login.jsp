@@ -70,7 +70,7 @@
 
         <div class="join">
             <a href="#">ID 찾기/ PW 찾기</a>
-            <a href="join_re.html">회원가입</a>
+            <a href="join">회원가입</a>
         </div>
     </div>
 

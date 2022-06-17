@@ -141,6 +141,10 @@
     
 }
 
+.center button:hover{
+	background-color: aqua;
+}
+
 .center input[type=submit] {
   width: 100%;
   background-color: black;
