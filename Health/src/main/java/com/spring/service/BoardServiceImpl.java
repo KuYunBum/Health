@@ -11,6 +11,7 @@ import com.spring.dao.BoardDAO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
+	
 	@Autowired
 	private SqlSession sqlSession;
 
