@@ -34,7 +34,7 @@ $(document).ready(function(){
     <div class="header">
         <div class="navbar1">
 
-            <a href="#">
+            <a href="/health">
                 <img src="/health/resources/image/logo.png" style="width:200px;height:150px;"> <!-- 로고 -->
             </a>
             <ul>
@@ -47,7 +47,7 @@ $(document).ready(function(){
         <div class="navbar2">
             <ul>
                 <!-- 메인 메뉴 -->
-                <li><a href="#">홈</a></li>
+                <li><a href="/health">홈</a></li>
                 <li><a href="/health/ex_recomm">AI 운동 추천</a></li>
                 <li><a href="#">멤버쉽</a></li>
                 <li><a href="#">트레이너</a></li>
